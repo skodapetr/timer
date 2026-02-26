@@ -2,8 +2,10 @@ name: github-pages
 on:
   push:
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-22.04
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v6
       - uses: actions/setup-node@v6
