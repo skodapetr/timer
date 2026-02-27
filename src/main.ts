@@ -79,11 +79,11 @@ function updateTimerElement(display: HTMLElement, value: number) {
 }
 
 function formatAsTime(value: number): string {
-  const h = Math.floor(value / 3600);
-  const m = Math.floor((value % 3600) / 60);
+  const hours = Math.floor(value / 3600);
+  const minutes = Math.floor((value % 3600) / 60);
   const sec = value % 60;
-  if (h > 0) {
-    return `${h}:${String(m).padStart(2, '0')}:${String(sec).padStart(2, '0')}`;
+  if (hours > 0) {
+    return `${hours}:${String(minutes).padStart(2, '0')}:${String(sec).padStart(2, '0')}`;
   }
-  return `${String(m).padStart(2, '0')}:${String(sec).padStart(2, '0')}`;
+  return `${String(minutes).padStart(2, '0')}:${String(sec).padStart(2, '0')}`;
 }
