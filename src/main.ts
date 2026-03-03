@@ -11,21 +11,40 @@ const MOON_ICON = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24
     renderInvalidInput(element);
     return;
   }
-  //
-  let remaining = seconds;
+
   const display = document.createElement('div');
   display.className = 'timer';
   element.appendChild(display);
-  updateTimerElement(display, remaining);
 
-  // Timer to update
-  const interval = setInterval(() => {
-    remaining -= 1;
+  const resetButton = document.createElement('button');
+  resetButton.className = 'reset-button';
+  resetButton.textContent = 'Restart';
+  resetButton.hidden = true;
+  element.appendChild(resetButton);
+
+  let intervalId: ReturnType<typeof setInterval>;
+
+  function startCountdown() {
+    let remaining = seconds;
+    display.classList.remove('done');
+    resetButton.hidden = true;
     updateTimerElement(display, remaining);
-    if (remaining === 0) {
-      clearInterval(interval);
-    }
-  }, 1000);
+
+    intervalId = setInterval(() => {
+      remaining -= 1;
+      updateTimerElement(display, remaining);
+      if (remaining === 0) {
+        clearInterval(intervalId);
+        resetButton.hidden = false;
+      }
+    }, 1000);
+  }
+
+  resetButton.addEventListener('click', () => {
+    startCountdown();
+  });
+
+  startCountdown();
 
 })(document.getElementById("app")!);
 
