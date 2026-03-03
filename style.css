@@ -55,6 +55,9 @@ body {
 .error {
   font-size: 1.2rem;
   color: #e74c3c;
+  max-width: 90vw;
+  text-align: center;
+  padding: 0 1rem;
 }
 
 .error code {
@@ -85,6 +88,12 @@ body {
 .reset-button:hover {
   background: var(--fg);
   color: var(--bg);
+}
+
+.reset-button[hidden] {
+  display: block;
+  visibility: hidden;
+  pointer-events: none;
 }
 
 .theme-toggle {
